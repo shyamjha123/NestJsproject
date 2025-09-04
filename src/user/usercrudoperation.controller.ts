@@ -12,6 +12,7 @@ interface userUpload {
     certification: string
 }
 
+
 // create crud operation for user 
 
 const storeUserData: Array<any> = [];
@@ -28,7 +29,7 @@ export class userCrudOperation {
         console.log(storeUserData[0]);
         return "Data submitted successfully"
     };
-
+    
     // get user data details
 
     @Get('/getusers')
@@ -62,7 +63,6 @@ export class userCrudOperation {
         // find index of user
         const index = storeUserData.findIndex((user) => user.id === userId);
         console.log(index, 'index');
-
 
         if (index === -1) {
             return { message: `User with id ${userId} not found` };
