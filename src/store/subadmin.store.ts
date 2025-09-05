@@ -1,0 +1,32 @@
+
+import { Injectable } from '@nestjs/common';
+interface Subadmins {
+    name: string,
+    id:number
+
+}
+// this class uses in other modules or controller as a dependency 
+@Injectable()
+ export class subadminstore {
+    private store = new Map<number, Subadmins>();
+    addSubadmins(subadmin: Subadmins) {
+        this.store.set(subadmin.id, subadmin)
+    };
+
+    getSubadmin(id: number) {
+        return this.store.get(id)
+    };
+    getSubadmins() {
+        return Array.from(this.store).map((_, subadmin) => subadmin)
+    };
+
+    updateSubadmin(id: number, subadmin: Subadmins) {
+        this.store.set(id, subadmin)
+    };
+
+    deleteSubadmin(id: number) {
+        this.store.delete(id)
+    }
+
+
+}
