@@ -12,9 +12,12 @@ import { Admincredential } from './store/New.store';
 import { userDetails } from './store/userdetails.controller';
 import { userService } from './servicescontroller/userservices.conrtroller';
 import { Userservice } from './services/user.service';
+import { userModule } from './usermodule/module/usermodule';
+import { jobmodule } from './jobmodule/module/job.module';
 
 @Module({
-  imports: [],
+  // im;port userModule in main maodule
+  imports: [userModule ,jobmodule],
   // controllers and routes
   // controllers: [userController, userAlbum, userVideos, uploadUserphotos, userCrudOperation, adminOperation, Subadmin],
   controllers: [userService],

@@ -9,20 +9,22 @@ export interface User {
 @Injectable()
 export class Userservice {
     private store = new Map<number, User>();
-    addUser(user:User){
-     this.store.set(user.id, user);
+
+    addUser(user: User) {
+        this.store.set(user.id, user);
     };
 
-    getUser(id:number){
+    getUser(id: number) {
         return this.store.get(+id);
     };
-    getUsers(){
+    
+    getUsers() {
         return Array.from(this.store).map(([_, user]) => user);
     };
-    updateUser(id:number, user:User){
+    updateUser(id: number, user: User) {
         this.store.set(id, user)
     };
-    deleteUser(id:number){
-     this.store.delete(id);
+    deleteUser(id: number) {
+        this.store.delete(id);
     }
- }
+}
