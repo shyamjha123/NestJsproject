@@ -14,10 +14,34 @@ import { userService } from './servicescontroller/userservices.conrtroller';
 import { Userservice } from './services/user.service';
 import { userModule } from './usermodule/module/usermodule';
 import { jobmodule } from './jobmodule/module/job.module';
+import { RouterModule } from '@nestjs/core';
+import { jobappmodule } from './jobmodule/jobapplicationmodule/jobappmodule/jobapp.module';
+import { JOB_ROUTES } from './jobmodule/jobroutes/job-routes';
+import { USER_ROUTES } from './usermodule/userroutes/user-routes';
+import { AppRoutingModule } from './app-routing.modules';
+// u can defined your router modules and nested modules give its children path 
+// const Routes = [
+//   {path:'users', module:userModule},
+//   {
+//     path:"jobs",
+//     module:jobmodule,
+//     children:[
+//       {
+//         path:'job-app',
+//         module:jobappmodule
+//       }
+//     ]
+//   }
+// ]
+
+
 
 @Module({
   // im;port userModule in main maodule
-  imports: [userModule ,jobmodule],
+  imports: [],
+
+  // imports modules as router module
+    // imports: [jobmodule, userModule, AppRoutingModule],
   // controllers and routes
   // controllers: [userController, userAlbum, userVideos, uploadUserphotos, userCrudOperation, adminOperation, Subadmin],
   controllers: [userService],
