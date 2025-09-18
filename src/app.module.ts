@@ -19,6 +19,8 @@ import { jobappmodule } from './jobmodule/jobapplicationmodule/jobappmodule/joba
 import { JOB_ROUTES } from './jobmodule/jobroutes/job-routes';
 import { USER_ROUTES } from './usermodule/userroutes/user-routes';
 import { AppRoutingModule } from './app-routing.modules';
+import { usercrudmodule } from './pipes/module/usercrud.module';
+import { validatormodule } from './classvalidator/module/validator.module';
 // u can defined your router modules and nested modules give its children path 
 // const Routes = [
 //   {path:'users', module:userModule},
@@ -38,13 +40,13 @@ import { AppRoutingModule } from './app-routing.modules';
 
 @Module({
   // im;port userModule in main maodule
-  imports: [],
+  imports: [validatormodule],
 
   // imports modules as router module
     // imports: [jobmodule, userModule, AppRoutingModule],
   // controllers and routes
   // controllers: [userController, userAlbum, userVideos, uploadUserphotos, userCrudOperation, adminOperation, Subadmin],
-  controllers: [userService],
+  controllers: [],
   // store here dependency as token and instance
   // providers: [{ provide: Admincredential, useClass: Admincredential }],
   // u can store in provider injwction instance as String format also
@@ -57,6 +59,6 @@ import { AppRoutingModule } from './app-routing.modules';
   // providers:[{ provide:'MAIL', useValue:['sjha2324@gmail.com', 'sweatkamal@gmail.com']},
   // providers: [{provide:Store, useClass:Store}]
   // add service file as DI 
-  providers:[Userservice]
+  providers:[]
 })
 export class AppModule {}
