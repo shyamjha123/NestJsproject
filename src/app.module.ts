@@ -14,13 +14,15 @@ import { userService } from './servicescontroller/userservices.conrtroller';
 import { Userservice } from './services/user.service';
 import { userModule } from './usermodule/module/usermodule';
 import { jobmodule } from './jobmodule/module/job.module';
-import { RouterModule } from '@nestjs/core';
+import { APP_FILTER, RouterModule } from '@nestjs/core';
 import { jobappmodule } from './jobmodule/jobapplicationmodule/jobappmodule/jobapp.module';
 import { JOB_ROUTES } from './jobmodule/jobroutes/job-routes';
 import { USER_ROUTES } from './usermodule/userroutes/user-routes';
 import { AppRoutingModule } from './app-routing.modules';
 import { usercrudmodule } from './pipes/module/usercrud.module';
 import { validatormodule } from './classvalidator/module/validator.module';
+import { exceptionmodule } from './exceptionfilter/modules/exception.module';
+import { AppExceptionFilter } from './exception/app-exception.filter';
 // u can defined your router modules and nested modules give its children path 
 // const Routes = [
 //   {path:'users', module:userModule},
@@ -40,7 +42,7 @@ import { validatormodule } from './classvalidator/module/validator.module';
 
 @Module({
   // im;port userModule in main maodule
-  imports: [validatormodule],
+  imports: [exceptionmodule],
 
   // imports modules as router module
     // imports: [jobmodule, userModule, AppRoutingModule],
@@ -59,6 +61,7 @@ import { validatormodule } from './classvalidator/module/validator.module';
   // providers:[{ provide:'MAIL', useValue:['sjha2324@gmail.com', 'sweatkamal@gmail.com']},
   // providers: [{provide:Store, useClass:Store}]
   // add service file as DI 
-  providers:[]
+  // register custome exception filter in global lvel
+  providers:[{provide:APP_FILTER, useClass:AppExceptionFilter}]
 })
 export class AppModule {}
