@@ -23,6 +23,7 @@ import { usercrudmodule } from './pipes/module/usercrud.module';
 import { validatormodule } from './classvalidator/module/validator.module';
 import { exceptionmodule } from './exceptionfilter/modules/exception.module';
 import { AppExceptionFilter } from './exception/app-exception.filter';
+import { applicationmodule } from './applicationlifecycle/module/applicationlife.module';
 // u can defined your router modules and nested modules give its children path 
 // const Routes = [
 //   {path:'users', module:userModule},
@@ -42,7 +43,7 @@ import { AppExceptionFilter } from './exception/app-exception.filter';
 
 @Module({
   // im;port userModule in main maodule
-  imports: [exceptionmodule],
+  imports: [exceptionmodule, applicationmodule],
 
   // imports modules as router module
     // imports: [jobmodule, userModule, AppRoutingModule],
