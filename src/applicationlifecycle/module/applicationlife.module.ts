@@ -8,7 +8,7 @@ import { applicationLifeController } from '../controller/applicationlife.control
     exports:[]
     
 })
-
+// application lifecycle phase 
 export class applicationmodule implements OnModuleInit {
     onModuleInit() {
         console.log("application module init ");

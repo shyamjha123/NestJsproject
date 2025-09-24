@@ -24,6 +24,7 @@ import { validatormodule } from './classvalidator/module/validator.module';
 import { exceptionmodule } from './exceptionfilter/modules/exception.module';
 import { AppExceptionFilter } from './exception/app-exception.filter';
 import { applicationmodule } from './applicationlifecycle/module/applicationlife.module';
+import { middletestingmodule } from './middlwaretesting/module/middtesting.module';
 // u can defined your router modules and nested modules give its children path 
 // const Routes = [
 //   {path:'users', module:userModule},
@@ -43,7 +44,7 @@ import { applicationmodule } from './applicationlifecycle/module/applicationlife
 
 @Module({
   // im;port userModule in main maodule
-  imports: [exceptionmodule, applicationmodule],
+  imports: [middletestingmodule],
 
   // imports modules as router module
     // imports: [jobmodule, userModule, AppRoutingModule],
@@ -63,6 +64,7 @@ import { applicationmodule } from './applicationlifecycle/module/applicationlife
   // providers: [{provide:Store, useClass:Store}]
   // add service file as DI 
   // register custome exception filter in global lvel
-  providers:[{provide:APP_FILTER, useClass:AppExceptionFilter}]
+  // providers:[{provide:APP_FILTER, useClass:AppExceptionFilter}]
+  providers:[]
 })
 export class AppModule {}
