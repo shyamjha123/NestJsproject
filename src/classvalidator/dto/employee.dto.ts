@@ -19,6 +19,7 @@ enum JobType {
   HALF_TIME,
 }
 
+
 export class LocationDTO {
   @IsString()
   @IsNotEmpty()

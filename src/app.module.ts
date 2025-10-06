@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
 import { userController } from './user/user.controller';
 import { userAlbum } from './album/album.controller';
 import { userVideos } from './videos/uservideos.controller';
@@ -14,7 +15,7 @@ import { userService } from './servicescontroller/userservices.conrtroller';
 import { Userservice } from './services/user.service';
 import { userModule } from './usermodule/module/usermodule';
 import { jobmodule } from './jobmodule/module/job.module';
-import { APP_FILTER, RouterModule } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR, RouterModule } from '@nestjs/core';
 import { jobappmodule } from './jobmodule/jobapplicationmodule/jobappmodule/jobapp.module';
 import { JOB_ROUTES } from './jobmodule/jobroutes/job-routes';
 import { USER_ROUTES } from './usermodule/userroutes/user-routes';
@@ -25,6 +26,10 @@ import { exceptionmodule } from './exceptionfilter/modules/exception.module';
 import { AppExceptionFilter } from './exception/app-exception.filter';
 import { applicationmodule } from './applicationlifecycle/module/applicationlife.module';
 import { middletestingmodule } from './middlwaretesting/module/middtesting.module';
+import { LoggerInterceptor } from './interceptor/logger.interceptor';
+import { configmodule } from './configservice/module/config.module';
+import { guardsmodule } from './guard/module/guard.module';
+import { authmodule } from './authentication/authmodule/authmodule.module.';
 // u can defined your router modules and nested modules give its children path 
 // const Routes = [
 //   {path:'users', module:userModule},
@@ -44,7 +49,16 @@ import { middletestingmodule } from './middlwaretesting/module/middtesting.modul
 
 @Module({
   // im;port userModule in main maodule
-  imports: [middletestingmodule],
+  imports: [
+    
+    configmodule,ConfigModule.forRoot({
+    isGlobal:true
+  },
+),
+guardsmodule,
+authmodule
+
+],
 
   // imports modules as router module
     // imports: [jobmodule, userModule, AppRoutingModule],
@@ -65,6 +79,7 @@ import { middletestingmodule } from './middlwaretesting/module/middtesting.modul
   // add service file as DI 
   // register custome exception filter in global lvel
   // providers:[{provide:APP_FILTER, useClass:AppExceptionFilter}]
-  providers:[]
+  // used here interceptor logger globally
+  // providers:[{provide:APP_INTERCEPTOR, useClass:LoggerInterceptor}]
 })
 export class AppModule {}
